@@ -19,25 +19,27 @@ namespace VariablesCS
             var numberOfCupsOfCoffee = 3;
             var fullname = " Nicholas Amheiser ";
             var today = DateTime.Now;
-            Console.WriteLine(numberOfCupsOfCoffee + fullname + today);
+            Console.WriteLine($"My name is {fullname}, right now it is {today.ToShortTimeString()} I have had {numberOfCupsOfCoffee} cups of coffee");
 
             // Type your username and press enter
-            Console.Write("Enter username:");
-            var username = Console.ReadLine();
-            if (username == "alice")
+            var username = Dialog("Enter username:");
+
+            //Changing the dialog to change name in case of "alice"
+            if (username =="alice")
             {
                 Console.Write("Welcome to the looking glass Alice!");
             }
-            Console.WriteLine(" Greetings " + username);
+            Console.WriteLine($" Greetings {username}");
 
             //Asking user for input
             //I'm not sure I have done with right.  So far this was by far the hardest part
-            Console.Write("Enter a number: ");
-            string firstNumberAsString = Console.ReadLine();
+        
+            var firstNumberAsString = Dialog("Enter a number: ");
+
             double firstOperand = Convert.ToDouble(firstNumberAsString);
 
-            Console.Write("Write a second number: ");
-            string secondNumberAsString = Console.ReadLine();
+            var secondNumberAsString = Dialog("Write a second number: ");
+
             double secondOperand = Convert.ToDouble(secondNumberAsString);
 
             //Doing Math
@@ -46,9 +48,11 @@ namespace VariablesCS
             var product = firstOperand * secondOperand;
             var quotient = firstOperand / secondOperand;
             var remainder = secondOperand % secondOperand;
+
             Console.WriteLine($"These are your lotto numbers: {sum} {difference} {product} {quotient} {remainder}");
+            Dialog("Problem Complete, hit any key to close");
 
-
+    
 
 
             //double.Parse(firstNumberAsString + secondNumberAsString);
@@ -62,6 +66,14 @@ namespace VariablesCS
 
 
 
+       
         }
+         private static string Dialog(string message)
+            {
+            //write the nessage
+            Console.Write(message);
+            //return what the user entered 
+            return Console.ReadLine();
+            }
     }
 }
